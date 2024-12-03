@@ -9,3 +9,12 @@ form {
   margin: 0;
   box-sizing: border-box;
 }
+
+.cv-name {
+  text-align: center;
+}
+
+.cv-contactinfo {
+  display: flex;
+  justify-content: space-around;
+}
