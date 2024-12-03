@@ -1,59 +1,27 @@
 import { useState } from "react";
-/* import defaultValues from "./defaults"; */
+import defaultValues from "./Defaults";
 import ContactInfoForm from "./ContactInfoForm";
 import EducationInfoForm from "./EducationInfoForm";
 import ExperienceInfoForm from "./ExperienceInfoForm";
 import RenderCv from "./renderCv";
 
 export default function App() {
-  const [contactInfo, setContactInfo] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-  const [educationInfo, setEducationInfo] = useState({
-    place: "",
-    degree: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    id: crypto.randomUUID(),
-  });
+  const [contactInfo, setContactInfo] = useState(defaultValues[0]);
+  const [educationInfo, setEducationInfo] = useState(defaultValues[1]);
   const [education, setEducation] = useState([]);
-  const [experenceInfo, setExperienceInfo] = useState({
-    place: "",
-    position: "",
-    startDate: "",
-    endDate: "",
-    location: "",
-    description: "",
-  });
+  const [experenceInfo, setExperienceInfo] = useState(defaultValues[2]);
   const [experience, setExperience] = useState([]);
 
   function submitEducation(event) {
     event.preventDefault();
     setEducation([...education, educationInfo]);
-    setEducationInfo({
-      place: "",
-      degree: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-    });
+    setEducationInfo(defaultValues[1]);
   }
 
   function submitExperience(event) {
     event.preventDefault();
     setExperience([...experience, experenceInfo]);
-    setExperienceInfo({
-      place: "",
-      position: "",
-      startDate: "",
-      endDate: "",
-      location: "",
-      description: "",
-    });
+    setExperienceInfo(defaultValues[2]);
   }
   return (
     <>
