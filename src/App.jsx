@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 /* import defaultValues from "./defaults"; */
 import ContactInfoForm from "./ContactInfoForm";
 import EducationInfoForm from "./EducationInfoForm";
@@ -18,7 +18,7 @@ export default function App() {
     startDate: "",
     endDate: "",
     location: "",
-    id: useId(),
+    id: crypto.randomUUID(),
   });
   const [education, setEducation] = useState([]);
   const [experenceInfo, setExperienceInfo] = useState({
@@ -28,11 +28,10 @@ export default function App() {
     endDate: "",
     location: "",
     description: "",
-    id: useId(),
   });
   const [experience, setExperience] = useState([]);
 
-  function SubmitEducation(event) {
+  function submitEducation(event) {
     event.preventDefault();
     setEducation([...education, educationInfo]);
     setEducationInfo({
@@ -41,11 +40,10 @@ export default function App() {
       startDate: "",
       endDate: "",
       location: "",
-      id: useId(),
     });
   }
 
-  function SubmitExperience(event) {
+  function submitExperience(event) {
     event.preventDefault();
     setExperience([...experience, experenceInfo]);
     setExperienceInfo({
@@ -55,25 +53,24 @@ export default function App() {
       endDate: "",
       location: "",
       description: "",
-      id: useId(),
     });
   }
-
   return (
     <>
       <ContactInfoForm data={contactInfo} setter={setContactInfo} />
       <EducationInfoForm
         data={educationInfo}
         setter={setEducationInfo}
-        onSubmit={SubmitEducation}
+        onSubmit={submitEducation}
       />
       <ExperienceInfoForm
         data={experenceInfo}
         setter={setExperienceInfo}
-        onSubmit={SubmitExperience}
+        onSubmit={submitExperience}
       />
       <RenderCv contactInfo={contactInfo} />
     </>
   );
+  /* if im correct, we dont need ids at all */
   /* render already filled out education/exp forms and allow their editing */
 }
