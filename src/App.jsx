@@ -11,17 +11,26 @@ export default function App() {
   const [education, setEducation] = useState([]);
   const [experenceInfo, setExperienceInfo] = useState(defaultValues[2]);
   const [experience, setExperience] = useState([]);
-
+  /* match experience form to the education one, add date input, start rendering */
   function submitEducation(event) {
+    /* edit the entry if the ids match */
+    const filtered = education.filter((entry) => entry.id !== educationInfo.id);
+    filtered.push(educationInfo);
+    filtered.sort((a, b) => a.id - b.id);
+    setEducation(filtered);
     event.preventDefault();
-    setEducation([...education, educationInfo]);
-    setEducationInfo(defaultValues[1]);
+    setEducationInfo({ ...defaultValues[1], id: Date.now() });
   }
 
   function submitExperience(event) {
+    const filtered = experience.filter(
+      (entry) => entry.id !== experenceInfo.id
+    );
+    filtered.push(experenceInfo);
+    filtered.sort((a, b) => a.id - b.id);
+    setExperience(filtered);
     event.preventDefault();
-    setExperience([...experience, experenceInfo]);
-    setExperienceInfo(defaultValues[2]);
+    setExperienceInfo({ ...defaultValues[2], id: Date.now() });
   }
   return (
     <>
@@ -30,15 +39,17 @@ export default function App() {
         data={educationInfo}
         setter={setEducationInfo}
         onSubmit={submitEducation}
+        storage={education}
+        storageSetter={setEducation}
       />
       <ExperienceInfoForm
         data={experenceInfo}
         setter={setExperienceInfo}
         onSubmit={submitExperience}
+        storage={experience}
+        storageSetter={setExperience}
       />
       <RenderCv contactInfo={contactInfo} />
     </>
   );
-  /* if im correct, we dont need ids at all */
-  /* render already filled out education/exp forms and allow their editing */
 }
