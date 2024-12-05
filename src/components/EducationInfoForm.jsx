@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputField from "./InputField";
 import RenderList from "./RenderList";
-import defaultValues from "./Defaults";
+import defaultValues from "../Defaults";
 
 export default function EducationInfoForm({
   data,
