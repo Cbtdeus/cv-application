@@ -1,7 +1,7 @@
 import InputField from "./InputField";
 import { useState } from "react";
 import RenderList from "./RenderList";
-import defaultValues from "./Defaults";
+import defaultValues from "../Defaults";
 
 export default function ExperienceInfoForm({
   data,
